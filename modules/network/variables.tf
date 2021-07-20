@@ -7,7 +7,7 @@ variable subnet_cidr {
 }
 
 variable availability_zone {
-  default = "us-west-1a"
+  default = "us-west-2a"
 }
 
 variable vpc-name {

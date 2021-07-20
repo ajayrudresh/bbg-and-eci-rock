@@ -5,7 +5,6 @@ provider "aws" {
 
 module "network" {
   source = "./modules/network"
-  availability_zone = "us-west-2a"
   vpc-name = "bbg-vpc"
   vpc-subnet-name= "bbg-public-subnet"
 }

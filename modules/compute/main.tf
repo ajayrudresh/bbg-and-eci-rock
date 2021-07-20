@@ -4,7 +4,7 @@ resource "aws_instance" "demo_instance" {
   associate_public_ip_address = true
   key_name = "${var.keyname}"
   subnet_id = "${var.subnet_id}"
-  availability_zone = "us-west-2a"
+  availability_zone = "${var.availability_zone}"
   tags = {
     Name = "${var.instance_name}"
   }

@@ -35,7 +35,7 @@ resource "aws_main_route_table_association" "bbg-a" {
 resource "aws_subnet" "bbg-subnet" {
   vpc_id = "${aws_vpc.bbg-vpc.id}"
   cidr_block = "${var.subnet_cidr}"
-  availability_zone = "us-west-2a"
+  availability_zone = "${var.availability_zone}"
   map_public_ip_on_launch = true
   tags = {
     Name = "${var.vpc-subnet-name}"

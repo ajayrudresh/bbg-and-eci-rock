@@ -20,3 +20,8 @@ variable keyname {
 variable instance_name {
   type = string
 }
+
+variable availability_zone {
+  default = "us-west-2a"
+}
+
