@@ -3,17 +3,18 @@ provider "aws" {
   shared_credentials_file = "/home/ajay/.aws/credentials"
 }
 
-resource "aws_instance" "demo_instance" {
-  ami = "ami-0dc8f589abe99f538"
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [ "sg-02158d9ffd673f0fa" ]
-  subnet_id = "subnet-d2455999"
-  key_name = "eci"
-  tags = {
-    Name = "berenberg-and-eci-rock-Ajay"
-  }
+module "network" {
+  source = "./modules/network"
+  availability_zone = "us-west-2a"
+  vpc-name = "bbg-vpc"
+  vpc-subnet-name= "bbg-public-subnet"
 }
 
-output "instance_private_ip" {
-  value = aws_instance.demo_instance.private_ip
+module "compute" {
+  source = "./modules/compute"
+  ami = "ami-0dc8f589abe99f538"
+  flavor = "t2.micro"
+  instance_name = "bbg-and-eci-rock-Ajay"
+  subnet_id = "${module.network.subnet_id}"
+  sg_id = "${module.network.sg_id}"
 }
